@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+#include "functiontab.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -15,7 +17,11 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_calculateButton_clicked();
+
 private:
     Ui::MainWindow *ui;
+    FunctionTab *functionTab;
 };
 #endif // MAINWINDOW_H

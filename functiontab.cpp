@@ -5,3 +5,14 @@ FunctionTab::FunctionTab(double a, double b, double delta, double k)
 {
 
 }
+
+QVector<QPair<double, double> > FunctionTab::CalculateTab()
+{
+    QVector<QPair<double, double>> funcResults;
+    double rez;
+    for(double x = __a; x < __b ; x += __delta)
+    {
+        rez =
+    }
+}
+
