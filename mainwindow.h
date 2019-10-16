@@ -20,6 +20,8 @@ public:
 private slots:
     void on_calculateButton_clicked();
 
+    void on_lexicographicalOrderButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     FunctionTab *functionTab;
