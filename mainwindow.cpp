@@ -47,7 +47,16 @@ void MainWindow::on_calculateButton_clicked()
     ui->maxLineEdit->setText(QString::number(std::max_element(results.begin(), results.end()) - results.begin()));
 }
 
-void MainWindow::on_tabWidget_tabBarClicked(int index)
+void MainWindow::on_lexicographicalOrderButton_clicked()
 {
-    ui->lexiOrderTextEdit->setPlainText(LexicographicOrder::DoLexicOrder("aaa 12e 313    44").last());
+    QString inputData = "C C++ Java Python Perl  R Matlab Ruby  JavaScript PHP AAA AAAB A AA";
+    auto listOfWords = inputData.split(' ');
+    listOfWords.removeAll(" ");
+    auto vectorOfWords = listOfWords.toVector();
+    std::sort(vectorOfWords.begin(), vectorOfWords.end());
+    ui->lexicographicalPlainTextEdit->clear();
+    foreach(auto item, vectorOfWords)
+    {
+        ui->lexicographicalPlainTextEdit->appendPlainText(item);
+    }
 }

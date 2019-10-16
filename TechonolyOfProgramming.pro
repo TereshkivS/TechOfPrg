@@ -17,13 +17,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     functiontab.cpp \
-    lexicographicorder.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     functiontab.h \
-    lexicographicorder.h \
     mainwindow.h
 
 FORMS += \

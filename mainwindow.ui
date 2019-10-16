@@ -241,20 +241,29 @@
          <attribute name="title">
           <string>Lab 2</string>
          </attribute>
-         <layout class="QGridLayout" name="gridLayout_2">
+         <layout class="QGridLayout" name="gridLayout">
           <item row="0" column="0">
-           <layout class="QVBoxLayout" name="verticalLayout_4">
+           <layout class="QVBoxLayout" name="verticalLayout_3">
             <item>
-             <widget class="QLabel" name="label">
-              <property name="text">
-               <string>Output words </string>
-              </property>
-             </widget>
+             <widget class="QPlainTextEdit" name="lexicographicalPlainTextEdit"/>
             </item>
             <item>
-             <widget class="QTextEdit" name="lexiOrderTextEdit">
-              <property name="enabled">
-               <bool>true</bool>
+             <spacer name="verticalSpacer">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QPushButton" name="lexicographicalOrderButton">
+              <property name="text">
+               <string>Do Lexicographical order</string>
               </property>
              </widget>
             </item>
