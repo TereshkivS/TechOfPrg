@@ -20,6 +20,8 @@ public:
 private slots:
     void on_calculateButton_clicked();
 
+    void on_tabWidget_tabBarClicked(int index);
+
 private:
     Ui::MainWindow *ui;
     FunctionTab *functionTab;

@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 
 #include "functiontab.h"
+#include "lexicographicorder.h"
 
 #include <algorithm>
 
@@ -30,7 +31,7 @@ void MainWindow::on_calculateButton_clicked()
     ui->resultTable->setColumnCount(2);
     ui->resultTable->setRowCount(resTable.size());
     QStringList heading;
-    heading <<  "Delta" << "Result";
+    heading <<  "X" << "Result";
     ui->resultTable->setHorizontalHeaderLabels(heading);
     for (int i = 0 ; i < resTable.size() ; i++) {
         ui->resultTable->setItem(i, 0
@@ -43,5 +44,10 @@ void MainWindow::on_calculateButton_clicked()
         results.push_back(item.second);
     }
     ui->minLineEdit->setText(QString::number(std::min_element(results.begin(), results.end()) - results.begin()));
-    ui->maxLineEdit->setText(QString::number(*std::min_element(results.begin(), results.end())));
+    ui->maxLineEdit->setText(QString::number(std::max_element(results.begin(), results.end()) - results.begin()));
+}
+
+void MainWindow::on_tabWidget_tabBarClicked(int index)
+{
+    ui->lexiOrderTextEdit->setPlainText(LexicographicOrder::DoLexicOrder("aaa 12e 313    44").last());
 }
