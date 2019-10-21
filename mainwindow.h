@@ -22,6 +22,8 @@ private slots:
 
     void on_lexicographicalOrderButton_clicked();
 
+    void on_tabWidget_tabBarClicked(int index);
+
 private:
     Ui::MainWindow *ui;
     FunctionTab *functionTab;

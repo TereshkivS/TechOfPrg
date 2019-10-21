@@ -18,11 +18,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     functiontab.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    productioninfo.cpp
 
 HEADERS += \
     functiontab.h \
-    mainwindow.h
+    mainwindow.h \
+    productioninfo.h
 
 FORMS += \
     mainwindow.ui

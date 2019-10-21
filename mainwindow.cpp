@@ -3,8 +3,11 @@
 
 #include "functiontab.h"
 #include "lexicographicorder.h"
+#include "productioninfo.h"
 
 #include <algorithm>
+#include <set>
+#include <QSet>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -43,8 +46,8 @@ void MainWindow::on_calculateButton_clicked()
     foreach (auto item, resTable) {
         results.push_back(item.second);
     }
-    ui->minLineEdit->setText(QString::number(std::min_element(results.begin(), results.end()) - results.begin()));
-    ui->maxLineEdit->setText(QString::number(std::max_element(results.begin(), results.end()) - results.begin()));
+    ui->minLineEdit->setText(QString::number(std::min_element(results.begin(), results.end()) - results.begin() + 1));
+    ui->maxLineEdit->setText(QString::number(std::max_element(results.begin(), results.end()) - results.begin() + 1));
 }
 
 void MainWindow::on_lexicographicalOrderButton_clicked()
@@ -59,4 +62,30 @@ void MainWindow::on_lexicographicalOrderButton_clicked()
     {
         ui->lexicographicalPlainTextEdit->appendPlainText(item);
     }
+}
+
+void MainWindow::on_tabWidget_tabBarClicked(int index)
+{
+    if (index != 3)
+        return;
+    std::vector <ProductionInfo> masOfProducts;
+    for(int i = 0; i < 30; i++)
+    {
+        masOfProducts.push_back(ProductionInfo());
+    }
+    std::set <ProductionInfo> setOfProducts(masOfProducts.begin(), masOfProducts.end());
+
+    ui->productionInfoTable->setColumnCount(2);
+    ui->productionInfoTable->setRowCount(setOfProducts.size());
+    QStringList heading;
+    heading << "Product code" << "Total";
+    ui->productionInfoTable->setHorizontalHeaderLabels(heading);
+
+    for (auto it = setOfProducts.begin() ; it != setOfProducts.end() ; it++) {
+        ui->productionInfoTable->setItem(int(it - setOfProducts.begin()), 0
+                                 , (new QTableWidgetItem(QString::number(*it->code()))));
+        ui->productionInfoTable->setItem(i, 1
+                                 , (new QTableWidgetItem(QString::number(*it))));
+    }
+
 }
