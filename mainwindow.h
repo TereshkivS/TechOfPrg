@@ -16,13 +16,14 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void reloadItemsInTable(int index, const QDate &date);
 
 private slots:
     void on_calculateButton_clicked();
 
     void on_lexicographicalOrderButton_clicked();
 
-    void on_tabWidget_tabBarClicked(int index);
+    void on_calendarWidget_clicked(const QDate &date);
 
 private:
     Ui::MainWindow *ui;

@@ -8,6 +8,8 @@
 #include <algorithm>
 #include <set>
 #include <QSet>
+#include <QFile>
+#include <QTextStream>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -64,28 +66,58 @@ void MainWindow::on_lexicographicalOrderButton_clicked()
     }
 }
 
-void MainWindow::on_tabWidget_tabBarClicked(int index)
+void MainWindow::reloadItemsInTable(int index, const QDate &date)
 {
-    if (index != 3)
+    if (index != 2)
         return;
+
     std::vector <ProductionInfo> masOfProducts;
-    for(int i = 0; i < 30; i++)
+
+    /*use this*/
+    QFile file("/home/serhii/TechonolyOfProgramming");
+    file.open(QIODevice::ReadOnly | QIODevice::Text);
+    QTextStream input(&file);
+    QString line = input.readLine();
+    while (!line.isNull()) {
+        auto splitLines = line.split(' ');
+        masOfProducts.push_back(ProductionInfo(QDate(splitLines.back().toInt(), splitLines.back().toInt(), splitLines.back().toInt())
+                                               , splitLines.back(), splitLines.back().toInt()
+                                               , splitLines.back().toInt()));
+        line = input.readLine();
+    }
+
+    /*or this*/
+    /*for(int i = 0; i < 30; i++)
     {
         masOfProducts.push_back(ProductionInfo());
-    }
-    std::set <ProductionInfo> setOfProducts(masOfProducts.begin(), masOfProducts.end());
+    }*/
 
+    std::map<int, int> mapOfProducts;
+
+    for (std::vector<ProductionInfo>::iterator it = masOfProducts.begin(); it != masOfProducts.end(); it ++) {
+        if((*it).__date != date)
+            continue;
+        if(mapOfProducts.count((*it).__code) > 0)
+        {
+            mapOfProducts.find((*it).__code)->second += (*it).__count;
+        }
+        else {
+            mapOfProducts.insert(std::pair<int, int>((*it).__code, (*it).__count));
+        }
+    }
     ui->productionInfoTable->setColumnCount(2);
-    ui->productionInfoTable->setRowCount(setOfProducts.size());
+    ui->productionInfoTable->setRowCount(mapOfProducts.size());
     QStringList heading;
     heading << "Product code" << "Total";
     ui->productionInfoTable->setHorizontalHeaderLabels(heading);
-
-    for (auto it = setOfProducts.begin() ; it != setOfProducts.end() ; it++) {
-        ui->productionInfoTable->setItem(int(it - setOfProducts.begin()), 0
-                                 , (new QTableWidgetItem(QString::number(*it->code()))));
-        ui->productionInfoTable->setItem(i, 1
-                                 , (new QTableWidgetItem(QString::number(*it))));
+    auto iter = mapOfProducts.begin();
+    for (int i = 0; i < mapOfProducts.size() ; i++, iter++) {
+        ui->productionInfoTable->setItem(i, 0, (new QTableWidgetItem(QString::number((*iter).first))));
+        ui->productionInfoTable->setItem(i, 1, (new QTableWidgetItem(QString::number((*iter).second))));
     }
+}
 
+void MainWindow::on_calendarWidget_clicked(const QDate &date)
+{
+    reloadItemsInTable(2, date);
 }

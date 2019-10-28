@@ -3,18 +3,19 @@
 
 #include <QDate>
 
-class ProductionInfo
+struct ProductionInfo
 {
-private:
     QDate __date;
     QString __title;
     int __code;
     int __count;
+
 public:
     ProductionInfo();
     ProductionInfo(QDate date, QString title, int code, int count);
 
-    int code() const;
+    friend bool operator < (const ProductionInfo &a, const ProductionInfo &b);
+
 };
 
 #endif // PRODUCTIONINFO_H

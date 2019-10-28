@@ -284,6 +284,9 @@
            </widget>
           </item>
           <item>
+           <widget class="QCalendarWidget" name="calendarWidget"/>
+          </item>
+          <item>
            <widget class="QTableWidget" name="productionInfoTable">
             <property name="mouseTracking">
              <bool>false</bool>
