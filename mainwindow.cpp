@@ -10,6 +10,7 @@
 #include <QSet>
 #include <QFile>
 #include <QTextStream>
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -74,20 +75,34 @@ void MainWindow::reloadItemsInTable(int index, const QDate &date)
     std::vector <ProductionInfo> masOfProducts;
 
     /*use this*/
-    QFile file("/home/serhii/TechonolyOfProgramming");
+    QFile file("/home/serhii/TechonolyOfProgramming/inputdata");
     file.open(QIODevice::ReadOnly | QIODevice::Text);
     QTextStream input(&file);
     QString line = input.readLine();
     while (!line.isNull()) {
         auto splitLines = line.split(' ');
-        masOfProducts.push_back(ProductionInfo(QDate(splitLines.back().toInt(), splitLines.back().toInt(), splitLines.back().toInt())
-                                               , splitLines.back(), splitLines.back().toInt()
-                                               , splitLines.back().toInt()));
+        /*int day, month, year, code, count;
+        QString title;
+        year = splitLines.front().toInt();
+        splitLines.pop_front();
+        month = splitLines.front().toInt();
+        splitLines.pop_front();
+        day = splitLines.front().toInt();
+        splitLines.pop_front();
+        title = splitLines.back();
+        splitLines.pop_front();
+        code = splitLines.back().toInt();
+        splitLines.pop_front();
+        count = splitLines.back().toInt();
+        splitLines.pop_front();
+        masOfProducts.push_back(ProductionInfo(date, title, code, count));*/
+        masOfProducts.push_back(ProductionInfo(QDate(splitLines.takeLast().toInt(), splitLines.takeLast().toInt(),splitLines.takeLast().toInt()),
+                                               splitLines.takeLast(), splitLines.takeLast().toInt(), splitLines.takeLast().toInt()));
         line = input.readLine();
     }
 
     /*or this*/
-    /*for(int i = 0; i < 30; i++)
+    /*for(int i = 0; i < 30; i++)takeFirst
     {
         masOfProducts.push_back(ProductionInfo());
     }*/
