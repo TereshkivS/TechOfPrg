@@ -20,7 +20,7 @@
       <item>
        <widget class="QTabWidget" name="tabWidget">
         <property name="currentIndex">
-         <number>2</number>
+         <number>3</number>
         </property>
         <property name="movable">
          <bool>false</bool>
@@ -295,6 +295,37 @@
              <bool>false</bool>
             </attribute>
            </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="lab4Tab">
+         <attribute name="title">
+          <string>Lab 4</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="0" column="0">
+           <layout class="QVBoxLayout" name="verticalLayout_5">
+            <item>
+             <widget class="QLabel" name="label_2">
+              <property name="text">
+               <string>Please, input string</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPlainTextEdit" name="inputPlainTextEdit"/>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton">
+              <property name="text">
+               <string>Print strings which contain 2 'd' chars</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPlainTextEdit" name="outputPlainTextEdit"/>
+            </item>
+           </layout>
           </item>
          </layout>
         </widget>

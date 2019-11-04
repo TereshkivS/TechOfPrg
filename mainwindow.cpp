@@ -4,6 +4,7 @@
 #include "functiontab.h"
 #include "lexicographicorder.h"
 #include "productioninfo.h"
+#include "strichka.h"
 
 #include <algorithm>
 #include <set>
@@ -81,21 +82,6 @@ void MainWindow::reloadItemsInTable(int index, const QDate &date)
     QString line = input.readLine();
     while (!line.isNull()) {
         auto splitLines = line.split(' ');
-        /*int day, month, year, code, count;
-        QString title;
-        year = splitLines.front().toInt();
-        splitLines.pop_front();
-        month = splitLines.front().toInt();
-        splitLines.pop_front();
-        day = splitLines.front().toInt();
-        splitLines.pop_front();
-        title = splitLines.back();
-        splitLines.pop_front();
-        code = splitLines.back().toInt();
-        splitLines.pop_front();
-        count = splitLines.back().toInt();
-        splitLines.pop_front();
-        masOfProducts.push_back(ProductionInfo(date, title, code, count));*/
         masOfProducts.push_back(ProductionInfo(QDate(splitLines.takeLast().toInt(), splitLines.takeLast().toInt(),splitLines.takeLast().toInt()),
                                                splitLines.takeLast(), splitLines.takeLast().toInt(), splitLines.takeLast().toInt()));
         line = input.readLine();
@@ -135,4 +121,11 @@ void MainWindow::reloadItemsInTable(int index, const QDate &date)
 void MainWindow::on_calendarWidget_clicked(const QDate &date)
 {
     reloadItemsInTable(2, date);
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    Strichka str(ui->inputPlainTextEdit->toPlainText());
+    ui->outputPlainTextEdit->setPlainText(str.findCharactersInSentences());
+
 }

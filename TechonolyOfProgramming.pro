@@ -19,12 +19,14 @@ SOURCES += \
     functiontab.cpp \
     main.cpp \
     mainwindow.cpp \
-    productioninfo.cpp
+    productioninfo.cpp \
+    strichka.cpp
 
 HEADERS += \
     functiontab.h \
     mainwindow.h \
-    productioninfo.h
+    productioninfo.h \
+    strichka.h
 
 FORMS += \
     mainwindow.ui

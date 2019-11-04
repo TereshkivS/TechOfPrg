@@ -25,6 +25,8 @@ private slots:
 
     void on_calendarWidget_clicked(const QDate &date);
 
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     FunctionTab *functionTab;
